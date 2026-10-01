@@ -15,8 +15,13 @@ android {
         applicationId = "com.protosync.app"
         minSdk = 29
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        // CI supplies release versions without changing source files.
+        versionCode = providers.gradleProperty("releaseVersionCode").orNull?.let {
+            requireNotNull(it.toIntOrNull()?.takeIf { code -> code in 1..2100000000 }) {
+                "releaseVersionCode must be an integer between 1 and 2100000000"
+            }
+        } ?: 1
+        versionName = providers.gradleProperty("releaseVersionName").orNull ?: "0.1.0"
         buildConfigField("boolean", "USE_DOH", "false")
     }
 

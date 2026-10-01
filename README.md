@@ -60,6 +60,12 @@ The compiled APKs will be in:
 - Debug: `app/build/outputs/apk/debug/app-debug.apk`
 - Release: `app/build/outputs/apk/release/app-release-unsigned.apk` (needs signing)
 
+## GitHub CI and releases
+
+Pull requests are tested and built without signing secrets. Release tags build, sign,
+verify, and publish an APK using a protected GitHub environment.
+See [CI and release setup](docs/CI_RELEASE.md) for secrets, signing-key setup, and tagging instructions.
+
 ## Usage
 
 1. **Sign in** with your Proton account credentials.
